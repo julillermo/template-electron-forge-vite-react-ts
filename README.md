@@ -1,9 +1,10 @@
 # About
-This `template-electron-forge-vite-react-ts` project is my attempt creating a React template for electron projects without relying too much on existing packagesw, and will instead build as a combination of the following starting points:
+This `template-electron-forge-vite-react-ts` project is my attempt at creating a React template for electron projects without relying too much on existing packages, and instead was built as a combination of the following starting points:
   * [Electron Forge](https://www.electronforge.io/)
   * [Vite](https://vitejs.dev/)
 
 This project was made primarily for learning and as a possible base for future projects. Feel free to use this as a starting piont if it is of any use to you.
+<br><br>
 
 # Steps to manually recreate the template
 ### 1. Generate an Electron Forge as a base for the project
@@ -12,6 +13,7 @@ Generate a new `Electorn Forge` project with the `vite-typescript` template usin
 npm init electron-app@latest <name-of-electron-forge-project> -- --template=vite-typescript
 ```
 *Be sure to change change &lt;name-of-the-project&gt; with your intended project name*
+<br><br>
 
 ### 2. Organize the Electron Forge project files
 Move the following files in the updated locations. This is primarily done for organization purposes and separation of contexts. The usefulness of this becomes more apparant once you start to create files that are exclusively used in one of the three contexts (`main`, `preload`, and `renderer`)
@@ -24,7 +26,7 @@ Move the following files in the updated locations. This is primarily done for or
 | `src/index.css` | move to `src/renderer/index.css` or delete |
 
 **NOTE:**
-  * Once we're already working with React, the `renderer.ts` and `index.css` files. However, these files can still be retained if you wish to work with vanilla JavaScript/TypeScript instead of React.
+  * Once we're already working with React, the `renderer.ts` and `index.css` files are not longer needed, and these can be deleted. However, these files can still be retained if you wish to work with vanilla JavaScript/TypeScript instead of React.
   * Once React has been set up, you will see how the `main.tsx` and `App.tsx` effectively serve the same purpose of rendering the project's "frontend" as what `renderer.ts` was intended for.
 
 Because we changed up the directories in our `electron-forge-project`, this change must be specified in the `forge.config.ts`. Look for the part of the file that's similar to the following and update it to match accordingly:
@@ -52,6 +54,7 @@ Additionally, update `vite.renderer.config.ts` to have the following `base`
 ```
   base: "./renderer",
 ```
+<br>
 
 ### 3. Generate a React project using Vite to copy files from
 In a different folder, create a new instance of a `vite` project with the `react-ts` template using the following command.
@@ -59,6 +62,8 @@ In a different folder, create a new instance of a `vite` project with the `react
 ```
 npm create vite@latest <name-of-vite-project> -- --template react-ts
 ```
+*Be sure to change change &lt;name-of-the-project&gt; with your intended project name*
+<br><br>
 
 <u>**Copy `tsconfig.json` details**</u>
 
@@ -73,6 +78,7 @@ Update `tsconfig.json` in the `electron-forge-project` to include the following.
   "noUnusedParameters": true,
   "noFallthroughCasesInSwitch": true
 ```
+<br>
 
 <u>**Copy files, directories, and packages from the `vite-project` to the `electron-forge-project`**</u>
 
@@ -106,6 +112,7 @@ As of writing, a new `vite` project created usnig the `react-ts` template includ
     "vite": "^5.4.0"
   }
 ```
+<br>
 
 <u>**Make the `electron-forge-project` recognize our React changes**</u>
 
@@ -137,6 +144,7 @@ Also include the following somewhere at the top of the `src/main/main.ts` file t
 declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
 declare const MAIN_WINDOW_VITE_NAME: string;
 ```
+<br>
 
 ### 4. Run the project
 You should now be able to run the project using the following commands
