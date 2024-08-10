@@ -13,7 +13,7 @@ const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 600 + 25, // added 25px to account for the global menu bar,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
 
