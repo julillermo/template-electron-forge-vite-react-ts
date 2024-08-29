@@ -6,6 +6,28 @@ This project is my attempt at creating a React template for my future Electron.j
 This project was made primarily for learning purposes. However, everyone is welcome to use it as a starting point for their own projects.
 <br><br>
 
+
+
+# Guide
+The project is intended as a template to speed up the set up step of electron projects. However, should you prefer to go through the development process yourself, perhaps for learning or customization purposes, the following details have been provided for you.
+
+The recommended additions are part of the project by default, and they should follow after the steps to manually recreate the template.
+
+1. [Steps to manually recreate the template](#steps-to-manually-recreate-the-template)
+2. Recommended additions
+    * [Global types for 'main' IPC functions]()
+    * [Extract 'main' IPC event listeners to an external file]()
+    * Setting up Electron API as functions
+        1. Main process
+            * [dialog]()
+    * Setting up Node API as functions
+        * [file system (node:fs)]()
+
+The selection of funtions are not extensive. They were selected based on my project needs. You're recommended to make your own additions by following the same steps described in the guide.
+<br><br>
+
+
+
 # Steps to manually recreate the template
 ### 1. Generate an Electron Forge project as the template's base
 Generate a new `Electorn Forge` project using the `vite-typescript` template with the following command.
@@ -72,7 +94,7 @@ npm create vite@latest <name-of-vite-project> -- --template react-ts
 <br><br>
 
 
-<u>**Copy `tsconfig.json` details**</u>
+#### <u>**Copy `tsconfig.json` details**</u>
 
 Update `tsconfig.json` in the `electron-forge-project` to include the following. These are taken from the `tsconfig.app.json` and `tsconfig.node.json` of the `vite-project`.
 
@@ -91,7 +113,7 @@ The above specifications are those that don't conflict with the `electron-forge-
 <br><br>
 
 
-<u>**Copy files, directories, and packages from the `vite-project` into the `electron-forge-project`**</u>
+#### <u>**Copy files, directories, and packages from the `vite-project` into the `electron-forge-project`**</u>
 
 Do the following actions for the specific files and directories from the `vite-project`:
 
@@ -127,7 +149,7 @@ As of writing (Aug 15, 2024), a new `vite` project using the `react-ts` template
 <br><br>
 
 
-<u>**Make the `electron-forge-project` recognize our React changes**</u>
+#### <u>**Make the `electron-forge-project` recognize our React changes**</u>
 
 In the `electron-forge-project`, update the `src/main/main.ts` to recognize the previously added React files.
 
