@@ -1,9 +1,9 @@
 # About
-This project is my attempt at creating a React template for my future Electron.js projects without heavily relying on existing templates and packages. This is a combination of only the following starting points:
+This project is my attempt at creating a React template for my future Electron.js projects. The goal was to create a template without relying too much existing templates and packages. This project was made primarily for learning purposes. However, everyone is welcome to use it as a starting point for their own projects.
+
+At it's core, this project is a combination of only the following starting points:
   * [Electron Forge](https://www.electronforge.io/) (Vite + TypeScript)
   * [Vite](https://vitejs.dev/) (React + TypeScript)
-
-This project was made primarily for learning purposes. However, everyone is welcome to use it as a starting point for their own projects.
 <br><br>
 
 
@@ -11,19 +11,23 @@ This project was made primarily for learning purposes. However, everyone is welc
 # Guide
 The project is intended as a template to speed up the set up step of electron projects. However, should you prefer to go through the development process yourself, perhaps for learning or customization purposes, the following details have been provided for you.
 
-The recommended additions are part of the project by default, and they should follow after the steps to manually recreate the template.
-
 1. [Steps to manually recreate the template](#steps-to-manually-recreate-the-template)
 2. Recommended additions
-    * [Global types for 'main' IPC functions]()
-    * [Extract 'main' IPC event listeners to an external file]()
     * Setting up Electron API as functions
         1. Main process
             * [dialog]()
     * Setting up Node API as functions
         * [file system (node:fs)]()
+    * Setting up custom utility functions
+      * [fileTypeValidation]()
+      * [directoryValidation]()
+    * [Global types for 'main' process IPC functions]()
+    * [Extract 'main' process IPC event listeners to an external file]()
 
-The selection of funtions are not extensive. They were selected based on my project needs. You're recommended to make your own additions by following the same steps described in the guide.
+
+The recommended additions are part of the project by default, and they should follow after the steps to manually recreate the template.
+
+The selection of functions are not extensive. They were selected based on my project needs. You're recommended to make your own additions by following the same steps described in the guide.
 <br><br>
 
 
@@ -177,7 +181,7 @@ Include the following code inside the `createWindow()` function. This allows the
   }
 ``` 
 
-Also include the following somewhere at the top of the `src/main/main.ts` file to remove the linting error that underlines these variables
+Also include the following somewhere at the top of the `src/main/main.ts` file to remove the linting error in VS Code that underlines these variables
 
 ```TS
 declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
