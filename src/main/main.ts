@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from "electron";
+import ipcHandler from "./ipcHanlder";
 import path from "path";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -48,11 +49,7 @@ const createWindow = () => {
     );
   }
 
-  // Open the DevTools. (comment in/out)
-  // mainWindow.webContents.openDevTools();
-
-  // Toggle resizable window (comment in/out)
-  // mainWindow.setResizable(false);
+  ipcHandler();
 };
 
 // This method will be called when Electron has finished
