@@ -11,13 +11,13 @@ At it's core, this project is a combination of the following starting points:
 The project is intended as a template to speed up the set up step for electron projects. Should you prefer to recreate the development process yourself, perhaps for learning or customization purposes, the following details have been provided for you.
 
 1. [Steps to manually recreate the template](#steps-to-manually-recreate-the-template)
-2. Recommended additions:
+2. Recommended continuation:
     * [Organize 'main' process functions directory](./guides/organize-main-function-directory.md) **(recommended)**
     * Setting up Electron API as functions
         1. Main process
-            * [dialog](./guides/electron-api-functions/main-process/dialog-guide.md) (**Serves as the general guide on how to include electron API into the template**)
+            * [dialog](./guides/electron-api-functions/main-process/dialog-guide.md) (Also serves as the **general guide** on **how to include APIs that require function arguments**)
     * Setting up Node API as functions
-        * [file system (node:fs)]() (UNFINISHED BROKEN LINK) (**Serves as the general guide on how to include node API into the template**)
+        * [file system (node:fs)](./guides/node-API-functinos/file-system-guide.md) (UNFINISHED BROKEN LINK) (**Serves as the general guide on how to include node API into the template**)
     * Setting up custom utility functions
       * [fileTypeValidation]() (UNFINISHED BROKEN LINK) **Serves as the general guide on how to include additional packages into the template**)
       * [directoryValidation]() (UNFINISHED BROKEN LINK)
@@ -25,9 +25,9 @@ The project is intended as a template to speed up the set up step for electron p
     * [Extract 'main' process IPC event listeners to an external file]() (UNFINISHED BROKEN LINK) **(recommended)**
 
 
-The recommended additions are part of the project by default, and they should follow after the steps to manually recreate the template.
+The additions included in the "Recommended continuation" are part of the project by default, and they should follow after the steps to manually recreate the template. However, note that the latest template contains mode functions that what's covered in the guides.
 
-The selection of functions are not extensive. They were selected based on my project needs. You're recommended to make your own additions by following the same steps described in the guide.
+The selection of functions are not extensive. They were selected based on my project needs. You're encouraged to modify add your own functions by following the same steps described in the guide.
 
 
 

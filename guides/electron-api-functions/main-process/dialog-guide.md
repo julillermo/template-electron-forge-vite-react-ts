@@ -24,7 +24,7 @@ This guide will cover how to incorporate the `showOpenDialog()` of the [electron
 > <b><u>Recommended prerequisite</u></b>:
 > Although not required, I highly recommend first [organizing the 'main' process functions directory](../../organize-main-function-directory.md).
 
-Navigate to your where you store your 'main' process functions. If you followed the recommended ['main' process functions organization](../../organize-main-function-directory.md), this will be the `./src/main/functions/electron` directory. If you didn't follow the above guide, the following can be directly inputted into the `main.ts`.
+Navigate to where you store your 'main' process functions. If you followed the recommended ['main' process functions organization](../../organize-main-function-directory.md), this will be the `./src/main/functions/electron` directory. If you didn't follow the above guide, the following can be directly inputted into the `main.ts`.
 
 Create a new file named `dialog.ts` if you're not inputting directly into the `main.ts`. This file will contain everything about the [electron dialog API](https://www.electronjs.org/docs/latest/api/dialog) that we want to include in our project.
 
@@ -210,7 +210,7 @@ export async function openDirectoryDialog({
 
 A completed `dialog.ts` file is provided in the [appendix](#final-dialogts-file) as well as in the [code base](../../../src/main/functions/electron/dialog.ts).
 
-### 2. Prepare handling of the just created `dialog` functions (`main.ts`/`ipcHandler.ts`)
+### 2. Prepare handling of the just created `dialog` functions (inside `main.ts`/`ipcHandler.ts`)
 Because of [how electorn works](https://www.electronjs.org/docs/latest/tutorial/process-model), functions on the 'main' process need to get passed through the IPC to be accessible and usable by the 'renderer' process. This is especially true for functions with dependencies that may only work in the 'main' process, such as our `dialog` API that needs to communicate with the OS.
 
 > [!TIP]
@@ -271,7 +271,7 @@ ipcMain.handle("dialog:openDirectory", ipcEventWrapper(openDirectoryDialog));
 ipcMain.handle("dialog:openFile", ipcEventWrapper(openFileDialog));
 ```
 
-A completed `ipcHandler.ts` file is provided in the [appendix](#final-dialogts-file) as well as in the [code base](../../../src/main/ipcHanlder.ts).
+A completed `ipcHandler.ts` file is provided in the [appendix](#final-handlerts-file) as well as in the [code base](../../../src/main/ipcHanlder.ts).
 
 
 
@@ -293,21 +293,22 @@ contextBridge.exposeInMainWorld("electron", {
 });
 ```
 
-In the above code, the `contextBridge.exposeInMainWorld()` exposes our function to make it accessible. The first `string` variable agrument (*"electron"*), serves as the access point to our function on the 'renderer' side of electron. By default, this will make our functions accessbile through the `window` object via `window.electron.[name_of_function]`. The names of the functions are the `key-values` provided as part of the second argument to `contextBridge.exposeInMainWorld()` (*openFile* and *openDirectory*). Hence, the proper calls to our function on the 'renderer' process will be `window.electron.openFile()` and `window.electron.openDirectory()`.
+In the above code, the `contextBridge.exposeInMainWorld()` exposes our function to make it accessible. The first `string` variable agrument (*"electron"* in this case), serves as the access point to our function on the 'renderer' side of electron. By default, this will make our functions accessbile through the `window` object via `window.electron.[name_of_function]`. The names of the functions are the `key-values` provided as part of the second argument to `contextBridge.exposeInMainWorld()` (*openFile* and *openDirectory*). Hence, the proper calls to our function on the 'renderer' process will be `window.electron.openFile()` and `window.electron.openDirectory()`.
 
 The `ipcRenderer.invoke()` calls on the our function in the 'main' process via the handler we made previously. Make sure that the arbitrary strings used in the `preload.ts` matches the corresponding strings used in `ipcHandler.ts`/`main.ts`. It is also important to note that the arguments being passed need to be deconstructured ({ ...args } )for the function call to work properly.
 
 
 
 ### 4. Call the `dialog` function from the 'renderer' process part of the electron project.
+
 Anywhere in the 'renderer' process, you can call the functions similar to the following:
 
 ```ts
 // examples:
-const zipFilePath = await electron.openFile();
-const extractPath = await electron.openDirectory();
+const zipFilePath = await window.electron.openFile();
+const extractPath = await window.electron.openDirectory();
 
-const epubPath = await electron.openFile({
+const epubPath = await window.electron.openFile({
         filters: [{ name: "EPUB", extensions: ["epub", "zip"] }],
       });
 ```

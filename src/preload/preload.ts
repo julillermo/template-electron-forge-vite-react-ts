@@ -20,3 +20,10 @@ contextBridge.exposeInMainWorld("electron", {
   openDirectory: (args?: OpenDialogProps) =>
     ipcRenderer.invoke("dialog:openDirectory", { ...args }),
 });
+
+contextBridge.exposeInMainWorld("node", {
+  isAFile: (args: string) =>
+    ipcRenderer.invoke("node:fs.statSync.isAFile", args),
+  isDirectory: (args: string) =>
+    ipcRenderer.invoke("node:fs.statSync.isDirectory", args),
+});
